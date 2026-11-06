@@ -142,7 +142,6 @@
                     </a>
                     <div class="flex items-center gap-2 justify-center sm:justify-end">
                         <button type="submit" class="bg-gradient-to-r from-green-500 to-emerald-600 text-green-800 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg sm:rounded-xl hover:shadow-lg transition-all font-medium flex items-center space-x-2 text-sm sm:text-base">
-                            <span>🚀</span>
                             <span>Publier le produit</span>
                         </button>
                         <x-audio-button buttonName="save_product" text="🔊" />

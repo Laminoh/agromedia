@@ -67,7 +67,7 @@
                         <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
                             <span class="text-lg">👨‍🌾</span>
                         </div>
-                        <p class="font-medium text-green-100 text-xs mt-2 truncate w-full">{{ Auth::user()->name }}</p>
+                        <p class="font-medium text-green-100 text-xs truncate w-full">{{ Auth::user()->name }}</p>
                         <p class="text-xs text-green-200 truncate w-full">Producteur</p>
                     </div>
                 </div>
