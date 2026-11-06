@@ -3,6 +3,7 @@ name: Tests
 on:
   push:
     branches:
+      - main
       - master
       - '*.x'
   pull_request:
@@ -45,3 +46,22 @@ jobs:
 
       - name: Execute tests
         run: php artisan test
+
+  build-assets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build production assets
+        run: npm run build

@@ -45,7 +45,7 @@ AGROMEDIA est une plateforme web responsive qui permet aux producteurs agricoles
 
 ## 🛠️ Stack Technique
 
-- **Backend**: Laravel 11 (PHP Framework)
+- **Backend**: Laravel 12 (PHP Framework)
 - **Frontend**: Blade Templates, HTML, CSS, JavaScript
 - **Base de données**: SQLite (développement) / MySQL (production)
 - **Authentification**: Laravel Breeze
@@ -56,7 +56,8 @@ AGROMEDIA est une plateforme web responsive qui permet aux producteurs agricoles
 ### Prérequis
 - PHP 8.2+
 - Composer
-- WAMP/XAMPP (pour MySQL en production)
+- Node.js et npm
+- MySQL si vous ne souhaitez pas utiliser SQLite
 
 ### Étapes d'installation
 
@@ -78,32 +79,30 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-4. Exécuter les migrations
+4. Configurer les identifiants de l'administrateur dans `.env` (`ADMIN_EMAIL` et `ADMIN_PASSWORD`) avec un mot de passe unique d'au moins 12 caractères. Ne partagez pas et ne committez jamais ces valeurs.
+
+5. Exécuter les migrations
 ```bash
 php artisan migrate
 php artisan db:seed --class=AdminSeeder
 ```
 
-5. Lier le stockage
+6. Lier le stockage
 ```bash
 php artisan storage:link
 ```
 
-6. Compiler les assets
+7. Compiler les assets
 ```bash
 npm run build
 ```
 
-7. Démarrer le serveur
+8. Démarrer le serveur
 ```bash
 php artisan serve
 ```
 
-## 👤 Comptes par défaut
-
-### Administrateur
-- **Email**: admin@agromedia.sn
-- **Mot de passe**: admin123
+Le seeder d'administration refuse de créer un compte si `ADMIN_EMAIL` ou `ADMIN_PASSWORD` n'est pas configuré.
 
 ## 📁 Structure du Projet
 
@@ -163,10 +162,13 @@ php artisan serve
 ```
 
 ### Production
-- Configurer MySQL dans `.env`
-- Exécuter les migrations
-- Configurer le stockage (S3 ou local)
-- Optimiser les assets: `npm run build --production`
+- Définir les variables d'environnement sur le serveur : `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL`, une `APP_KEY` générée et les paramètres de la base de données.
+- Configurer `ADMIN_EMAIL` et `ADMIN_PASSWORD` avec des identifiants uniques et un mot de passe d'au moins 12 caractères. Ne jamais utiliser un mot de passe de développement en production.
+- Installer les dépendances PHP sans les outils de développement : `composer install --no-dev --optimize-autoloader`.
+- Installer et compiler les assets : `npm ci` puis `npm run build`.
+- Exécuter les migrations avec `php artisan migrate --force`.
+- Créer le lien de stockage avec `php artisan storage:link` si le stockage local est utilisé.
+- Configurer la racine web du serveur pour qu'elle pointe vers le dossier `public/`.
 
 ## 🔧 Configuration MySQL
 
@@ -202,4 +204,4 @@ Ce projet est développé pour AGROMEDIA.
 
 ## 👥 Équipe
 
-Développé avec Laravel 11 et TailwindCSS.
+Développé avec Laravel 12 et TailwindCSS.
