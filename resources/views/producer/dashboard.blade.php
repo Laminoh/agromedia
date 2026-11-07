@@ -70,7 +70,7 @@
                         <div class="border border-gray-200 rounded-xl sm:rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 group">
                             <div class="relative">
                                 @if($product->media->where('type', 'image')->first())
-                                    <img src="{{ asset('storage/' . $product->media->where('type', 'image')->first()->path) }}"
+                                    <img src="{{ $product->media->where('type', 'image')->first()->url }}"
                                          alt="{{ $product->title }}" class="w-full h-36 sm:h-48 object-cover group-hover:scale-105 transition-transform duration-300">
                                 @else
                                     <div class="w-full h-36 sm:h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">

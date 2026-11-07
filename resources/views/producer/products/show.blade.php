@@ -15,7 +15,7 @@
                     <div class="relative">
                         <!-- Main Image -->
                         <div class="aspect-video bg-gray-100">
-                            <img src="{{ asset('storage/' . $product->media->where('type', 'image')->first()->path) }}"
+                            <img src="{{ $product->media->where('type', 'image')->first()->url }}"
                                  alt="{{ $product->title }}"
                                  id="mainImage"
                                  class="w-full h-full object-cover max-h-96">
@@ -27,8 +27,8 @@
                         <div class="grid grid-cols-4 gap-2">
                             @foreach($product->media->where('type', 'image') as $index => $image)
                             <div class="aspect-square rounded-lg overflow-hidden cursor-pointer border-2 {{ $index === 0 ? 'border-green-500' : 'border-transparent' }} hover:border-green-500 transition-colors"
-                                 onclick="changeMainImage('{{ asset('storage/' . $image->path) }}', this)">
-                                <img src="{{ asset('storage/' . $image->path) }}" alt="{{ $product->title }}" class="w-full h-full object-cover">
+                                 onclick="changeMainImage('{{ $image->url }}', this)">
+                                <img src="{{ $image->url }}" alt="{{ $product->title }}" class="w-full h-full object-cover">
                             </div>
                             @endforeach
                         </div>
@@ -50,7 +50,7 @@
                         @foreach($product->media->where('type', 'video') as $video)
                         <div class="bg-gray-50 rounded-lg sm:rounded-xl overflow-hidden">
                             <video controls class="w-full">
-                                <source src="{{ asset('storage/' . $video->path) }}" type="video/mp4">
+                                <source src="{{ $video->url }}" type="video/mp4">
                                 Votre navigateur ne supporte pas la vidéo.
                             </video>
                         </div>

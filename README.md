@@ -170,6 +170,19 @@ php artisan serve
 - Créer le lien de stockage avec `php artisan storage:link` si le stockage local est utilisé.
 - Configurer la racine web du serveur pour qu'elle pointe vers le dossier `public/`.
 
+### Déploiement sur Laravel Cloud
+
+1. Connecter le dépôt GitHub `Laminoh/agromedia` à Laravel Cloud et créer l'application depuis la branche `main`.
+2. Choisir le runtime PHP 8.2 ou supérieur et configurer la commande de build `composer install --no-dev && npm run build`.
+3. Configurer la commande de déploiement `php artisan migrate --force`.
+4. Attacher une base de données Laravel MySQL à l'environnement. Laravel Cloud fournit alors les variables de connexion.
+5. Créer un bucket Object Storage public et l'attacher comme disque par défaut de l'environnement. Les médias téléversés utilisent le disque par défaut (`FILESYSTEM_DISK`) quand celui-ci n'est pas `local`.
+6. Définir `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL`, une `APP_KEY` générée, `ADMIN_EMAIL` et `ADMIN_PASSWORD` dans les variables d'environnement de l'environnement Cloud.
+7. Après le premier déploiement et les migrations, exécuter une fois `php artisan db:seed --class=AdminSeeder --force` depuis la console Laravel Cloud pour créer le compte administrateur.
+8. Tester l'inscription, la création d'un produit avec image et vidéo, leur affichage public, puis la suppression du produit avant de connecter un domaine personnalisé.
+
+Ne stockez pas les téléversements sur le disque local de l'application Cloud : son stockage de fichiers n'est pas destiné à conserver les médias entre les déploiements. Les images et vidéos des produits doivent rester sur le bucket Object Storage.
+
 ## 🔧 Configuration MySQL
 
 Pour utiliser MySQL au lieu de SQLite, modifier le fichier `.env`:
@@ -187,7 +200,7 @@ DB_PASSWORD=
 
 - Le projet utilise actuellement SQLite pour le développement
 - Les fichiers audio doivent être placés dans `public/audio/`
-- Les images et vidéos sont stockées dans `storage/app/public/`
+- En local, les images et vidéos sont stockées sur le disque public Laravel. En production Cloud, utilisez un bucket Object Storage public.
 - Le lien symbolique `storage:link` est nécessaire pour accéder aux fichiers
 
 ## 🚧 Fonctionnalités futures

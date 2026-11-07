@@ -41,10 +41,12 @@ class ProductController extends Controller
             'price' => $request->price,
         ]);
 
+        $mediaDisk = config('filesystems.media_disk');
+
         // Upload images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
-                $path = $image->store('products/images', 'public');
+                $path = $image->store('products/images', $mediaDisk);
                 Media::create([
                     'product_id' => $product->id,
                     'type' => 'image',
@@ -56,7 +58,7 @@ class ProductController extends Controller
         // Upload videos
         if ($request->hasFile('videos')) {
             foreach ($request->file('videos') as $video) {
-                $path = $video->store('products/videos', 'public');
+                $path = $video->store('products/videos', $mediaDisk);
                 Media::create([
                     'product_id' => $product->id,
                     'type' => 'video',
@@ -104,8 +106,10 @@ class ProductController extends Controller
         $this->authorize('delete', $product);
 
         // Delete media files
+        $mediaDisk = config('filesystems.media_disk');
+
         foreach ($product->media as $media) {
-            Storage::disk('public')->delete($media->path);
+            Storage::disk($mediaDisk)->delete($media->path);
             $media->delete();
         }
 

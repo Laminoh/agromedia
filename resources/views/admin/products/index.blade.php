@@ -61,7 +61,7 @@
                             <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all">
                                 <div class="relative">
                                     @if($product->media->where('type', 'image')->first())
-                                        <img src="{{ asset('storage/' . $product->media->where('type', 'image')->first()->path) }}" 
+                                        <img src="{{ $product->media->where('type', 'image')->first()->url }}"
                                              alt="{{ $product->title }}" class="w-full h-48 object-cover">
                                     @else
                                         <div class="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
@@ -132,7 +132,7 @@
                             <div class="bg-white rounded-2xl shadow-lg overflow-hidden opacity-75 hover:opacity-100 transition-opacity">
                                 <div class="relative">
                                     @if($product->media->where('type', 'image')->first())
-                                        <img src="{{ asset('storage/' . $product->media->where('type', 'image')->first()->path) }}" 
+                                        <img src="{{ $product->media->where('type', 'image')->first()->url }}"
                                              alt="{{ $product->title }}" class="w-full h-48 object-cover">
                                     @else
                                         <div class="w-full h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
