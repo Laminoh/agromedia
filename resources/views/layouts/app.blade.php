@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-green-50">
+        <div class="min-h-screen bg-green-50" @if (request()->routeIs('admin.dashboard')) style="background-image: linear-gradient(rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.35)), url('{{ asset('images/IM4.jpg') }}'); background-position: center; background-size: cover; background-attachment: fixed;" @endif>
             @include('layouts.navigation')
 
             <!-- Page Heading -->

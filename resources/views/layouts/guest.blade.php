@@ -18,6 +18,12 @@
             background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #f0fdfa 100%) !important;
             min-height: 100vh;
         }
+
+        body.login-page {
+            background:
+                linear-gradient(rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.35)),
+                url('{{ asset('images/IM6.jpg') }}') center / cover fixed !important;
+        }
         
         .nav {
             background: rgba(255, 255, 255, 0.9);
@@ -51,6 +57,12 @@
             justify-content: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             font-size: 1.5rem;
+        }
+
+        .logo-icon img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
         }
         
         .logo-text {
@@ -124,6 +136,12 @@
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
             font-size: 2.5rem;
             animation: floating 3s ease-in-out infinite;
+        }
+
+        .welcome-icon img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
         }
         
         @keyframes floating {
@@ -272,7 +290,7 @@
         }
     </style>
 </head>
-<body>
+<body @if (request()->routeIs('login')) class="login-page" @endif>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-content">

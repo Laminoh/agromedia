@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AGROMEDIA - Plateforme des producteurs agricoles</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite('resources/css/app.css')
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -132,7 +132,6 @@
                 @else
                     <div class="flex justify-center gap-4 flex-wrap">
                         <a href="{{ route('register') }}" class="btn-hover bg-white text-green-700 px-8 py-4 rounded-2xl font-bold text-lg shadow-xl hover:shadow-2xl flex items-center space-x-2">
-                            <span>🚀</span>
                             <span>S'inscrire gratuitement</span>
                         </a>
                         <a href="{{ route('login') }}" class="btn-hover bg-transparent border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-green-700 transition-all duration-300 flex items-center space-x-2">
@@ -280,7 +279,7 @@
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center">
-                            <img src="{{ asset('images/logoAgro') }}" alt="AGROMEDIA" class="w-8 h-8 object-contain">
+                            <img src="{{ asset('images/logoAgro.jpeg') }}" alt="AGROMEDIA" class="w-8 h-8 object-contain">
                         </div>
                         <span class="text-xl font-bold">AGROMEDIA</span>
                     </div>

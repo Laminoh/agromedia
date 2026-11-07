@@ -93,7 +93,6 @@
     </div>
 
     <button type="submit" class="btn-submit">
-        <span>🚀</span>
         <span>Créer mon compte</span>
     </button>
 
