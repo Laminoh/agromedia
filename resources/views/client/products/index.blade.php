@@ -83,7 +83,7 @@
                                 @php($image = $product->media->where('type', 'image')->first())
                                 <article class="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                                     <a href="{{ route('client.products.show', $product) }}" class="relative block aspect-[4/3] overflow-hidden bg-green-50">
-                                        <img src="{{ $image ? asset('storage/' . $image->path) : asset('images/IM5.jpg') }}" alt="{{ $product->title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
+                                        <img src="{{ $image ? $image->url : asset('images/IM5.jpg') }}" alt="{{ $product->title }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105">
                                         <span class="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-green-800">{{ ucfirst($product->category ?? 'Produit') }}</span>
                                     </a>
                                     <div class="p-5">
