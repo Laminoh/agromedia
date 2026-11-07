@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Media;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 use Tests\TestCase;
 
 class MediaStorageTest extends TestCase
@@ -12,11 +13,12 @@ class MediaStorageTest extends TestCase
     {
         Storage::fake('public');
         config(['filesystems.media_disk' => 'public']);
+        URL::forceRootUrl('http://localhost/agromedia/public');
 
         $media = new Media(['path' => 'products/images/tomato.jpg']);
 
         $this->assertSame(
-            Storage::disk('public')->url('products/images/tomato.jpg'),
+            'http://localhost/agromedia/public/storage/products/images/tomato.jpg',
             $media->url,
         );
     }

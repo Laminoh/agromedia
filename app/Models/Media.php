@@ -19,7 +19,13 @@ class Media extends Model
 
     public function getUrlAttribute(): string
     {
-        return Storage::disk(config('filesystems.media_disk'))->url($this->path);
+        $disk = config('filesystems.media_disk');
+
+        if ($disk === 'public' && config('filesystems.disks.public.driver') === 'local') {
+            return asset('storage/'.$this->path);
+        }
+
+        return Storage::disk($disk)->url($this->path);
     }
 
     public function product()
